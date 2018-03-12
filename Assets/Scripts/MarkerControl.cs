@@ -9,7 +9,7 @@ public class MarkerControl : MonoBehaviour
 	{
 		if (coll.collider.tag == "Player") {
 			// Player enter marker, proceed to next marker
-			GameManager.GM.nextPoint ();
+			GameManager.GM.nextPoint (false);
 			gameObject.SetActive (false);
 		}
 	}
@@ -18,7 +18,7 @@ public class MarkerControl : MonoBehaviour
 	{
 		if (coll.tag == "Player") {
 			// Player enter marker, proceed to next marker
-			GameManager.GM.nextPoint ();
+			GameManager.GM.nextPoint (false);
 			gameObject.SetActive (false);
 		}
 	}
