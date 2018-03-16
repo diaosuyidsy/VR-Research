@@ -55,6 +55,7 @@ public class Teleporter : MonoBehaviour
                     Target.SetActive(true);
                 }
                 Target.transform.position = hit.point;
+				Target.transform.rotation = transform.rotation;
             }
             else
             {

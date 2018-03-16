@@ -62,8 +62,10 @@ public class Controller : MonoBehaviour {
 			   && Terrain.activeTerrain.SampleHeight (temp) + Height >= prevHeight - Step) {
 				temp.y = Terrain.activeTerrain.SampleHeight (temp) + Height;
 				//set player position
-				Player.position = temp;
 			}
+
+			Player.position = temp;
+
         }
     }
 }

@@ -26,6 +26,12 @@ public class GameManager : MonoBehaviour
 	// Each element in the array will point to a path point
 	int[] path;
 
+	// Methods
+	private SkiPole skiScript;
+	private Grappling grapScript;
+	private Hoverboard hoverScript;
+	private Teleporter teleScript;
+
 	void Awake ()
 	{
 		GM = this;
@@ -33,6 +39,7 @@ public class GameManager : MonoBehaviour
 
 	void Start ()
 	{
+		initScript ();
 		path = new int[60];
 		initialLoaction = new Vector3 (Player.transform.position.x, Player.transform.position.y, Player.transform.position.z);
 		// Use Markers[path[markerPosition]];
@@ -42,6 +49,14 @@ public class GameManager : MonoBehaviour
 		initPath ();
 		initDialogue ();
 		nextPoint (false);
+	}
+
+	void initScript ()
+	{
+		skiScript = Player.GetComponentInChildren<SkiPole> ();
+		grapScript = Player.GetComponentInChildren<Grappling> ();
+		hoverScript = Player.GetComponentInChildren<Hoverboard> ();
+		teleScript = Player.GetComponentInChildren<Teleporter> ();
 	}
 
 	// Result: path[60] now is filled with correct result of Path we want
@@ -90,11 +105,17 @@ public class GameManager : MonoBehaviour
 		if (markerPointer > maxMarkerPosition) {
 			// This means time for next method
 			Debug.Log ("End this test");
+			teleScript.enabled = false;
+			skiScript.enabled = true;
+			SceneManager.LoadScene ("Main Scene");
 			return;
 		}
 		if ((markerPointer) % 3 == 0 && markerPointer != 0 && !bypass) {
 			// This means 1/20 interation is complete
 			// Let tester point back
+//			teleScript.enabled = false;
+//			skiScript.enabled = true;
+//			SceneManager.LoadScene ("Main Scene");
 			PlayerActionLock = true;
 			return;
 		}

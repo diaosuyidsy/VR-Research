@@ -17,6 +17,7 @@ public class Grappling : MonoBehaviour
     // Sprite for the target indicator
     public GameObject target;
     public RaycastHit hit;
+	public GameObject camerac;
 
     public LayerMask cullingmask;
     // Max distance to allow grappling
@@ -58,6 +59,7 @@ public class Grappling : MonoBehaviour
                 if (!isMoving)
                 {
                     Indicator.transform.position = hit.point;
+					Indicator.transform.rotation = camerac.transform.rotation;
                 }
             }
         }
