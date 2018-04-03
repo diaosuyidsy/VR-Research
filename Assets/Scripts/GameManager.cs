@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,12 +27,6 @@ public class GameManager : MonoBehaviour
 	// Each element in the array will point to a path point
 	int[] path;
 
-	// Methods
-	private SkiPole skiScript;
-	private Grappling grapScript;
-	private Hoverboard hoverScript;
-	private Teleporter teleScript;
-
 	void Awake ()
 	{
 		GM = this;
@@ -39,7 +34,6 @@ public class GameManager : MonoBehaviour
 
 	void Start ()
 	{
-		initScript ();
 		path = new int[60];
 		initialLoaction = new Vector3 (Player.transform.position.x, Player.transform.position.y, Player.transform.position.z);
 		// Use Markers[path[markerPosition]];
@@ -50,14 +44,7 @@ public class GameManager : MonoBehaviour
 		initDialogue ();
 		nextPoint (false);
 	}
-
-	void initScript ()
-	{
-		skiScript = Player.GetComponentInChildren<SkiPole> ();
-		grapScript = Player.GetComponentInChildren<Grappling> ();
-		hoverScript = Player.GetComponentInChildren<Hoverboard> ();
-		teleScript = Player.GetComponentInChildren<Teleporter> ();
-	}
+		
 
 	// Result: path[60] now is filled with correct result of Path we want
 	// the tester to take.
@@ -78,8 +65,6 @@ public class GameManager : MonoBehaviour
 				Int32.TryParse (b, out y);
 				// Now convert the position to array index in path[]
 				int result = 5 * (y - 1) + (x - 1);
-//				Debug.Log (x + "," + y);
-//				Debug.Log (result);
 				path [pathIndex] = result;
 				pathIndex++;
 			}
@@ -101,21 +86,16 @@ public class GameManager : MonoBehaviour
 		if (dialogueQ.Count > 0)
 			StartCoroutine (TypeSentence (dialogueQ.Dequeue ()));
 
-		//
+		// This means time for next method
 		if (markerPointer > maxMarkerPosition) {
-			// This means time for next method
 			Debug.Log ("End this test");
-			teleScript.enabled = false;
-			skiScript.enabled = true;
-			SceneManager.LoadScene ("Main Scene");
+			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
 			return;
 		}
+
 		if ((markerPointer) % 3 == 0 && markerPointer != 0 && !bypass) {
 			// This means 1/20 interation is complete
 			// Let tester point back
-//			teleScript.enabled = false;
-//			skiScript.enabled = true;
-//			SceneManager.LoadScene ("Main Scene");
 			PlayerActionLock = true;
 			return;
 		}
@@ -135,6 +115,11 @@ public class GameManager : MonoBehaviour
 		ClickedOnce = false;
 		nextPoint (true);
 
+		//Write to File
+		string filepath = "Assets/Result" + (SceneManager.GetActiveScene ().buildIndex + 1).ToString () + ".txt";
+		using (StreamWriter sw = new StreamWriter (filepath, false)) {
+			sw.WriteLine ("Player angle is: " + angle);
+		}
 		Debug.Log ("Player Initial Location: " + initialLoaction);
 		Debug.Log ("Player Final Localtion: " + player.position);
 		Debug.Log ("Player Marker Localtion: " + playerMarker.position);

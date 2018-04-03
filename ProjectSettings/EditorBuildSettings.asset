@@ -4,4 +4,16 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scene/Main Scene_1_Teleport.unity
+    guid: 16c898b897f35034daab44fa719d4a17
+  - enabled: 1
+    path: Assets/Scene/Main Scene_2_Grapple.unity
+    guid: 5dcc7bef8ac51bc41b711a9028254c32
+  - enabled: 1
+    path: Assets/Scene/Main Scene_3_Ski.unity
+    guid: a58786f10702f584a92a90a6ff548799
+  - enabled: 1
+    path: Assets/Scene/Main Scene_4_Hover.unity
+    guid: 6d42d7df69e90f142b92de37db484106

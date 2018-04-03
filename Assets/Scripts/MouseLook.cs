@@ -5,6 +5,8 @@ public class MouseLook : MonoBehaviour
 {
 	public float mouseSensitivity = 100.0f;
 	public float clampAngle = 80.0f;
+	// This is the button to activate the Calculate Result
+	public OVRInput.Button button = OVRInput.Button.PrimaryIndexTrigger;
 
 	private float rotY = 0.0f;
 	// rotation around the up/y axis
@@ -38,6 +40,10 @@ public class MouseLook : MonoBehaviour
 			if (Input.GetMouseButtonUp (0)) {
 				GameManager.GM.ClickedOnce = true;
 				GameManager.GM.CalculateResult (transform.parent, transform.parent.GetChild (2));
+			}
+			if (OVRInput.GetDown (button)) {
+				GameManager.GM.ClickedOnce = true;
+				GameManager.GM.CalculateResult (transform.parent, transform.parent.GetChild (0));
 			}
 		}
 	}
