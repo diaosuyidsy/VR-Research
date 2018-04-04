@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class MarkerControl : MonoBehaviour
 {
+	public Color red;
+	public Color blue;
+	public Color yellow;
+	public GameObject[] Godrayz;
 
 	void OnCollisionEnter (Collision coll)
 	{
@@ -20,6 +24,26 @@ public class MarkerControl : MonoBehaviour
 			// Player enter marker, proceed to next marker
 			GameManager.GM.nextPoint (false);
 			gameObject.SetActive (false);
+		}
+	}
+
+	void OnEnable ()
+	{
+		changeColor ();
+	}
+
+	void changeColor ()
+	{
+		Color thisColor = new Color ();
+		if (GameManager.GM.markerPointer % 3 == 0) {
+			thisColor = red;
+		} else if (GameManager.GM.markerPointer % 3 == 1) {
+			thisColor = blue;
+		} else {
+			thisColor = yellow;
+		}
+		foreach (GameObject grz in Godrayz) {
+			grz.GetComponent<MeshRenderer> ().material.SetColor ("_TintColor", thisColor);
 		}
 	}
 }

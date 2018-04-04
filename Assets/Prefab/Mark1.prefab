@@ -105,11 +105,11 @@ GameObject:
   - component: {fileID: 114322408842071038}
   m_Layer: 0
   m_Name: Mark1
-  m_TagString: Untagged
+  m_TagString: Mark
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1863661261573502
 GameObject:
   m_ObjectHideFlags: 1
@@ -408,6 +408,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f07fcc847823db45a3b20397caf0b00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  red: {r: 1, g: 0, b: 0, a: 0.07450981}
+  blue: {r: 0, g: 0.54509807, b: 1, a: 0.07450981}
+  yellow: {r: 0.7411765, g: 0.7372549, b: 0.69411767, a: 0.07450981}
+  Godrayz:
+  - {fileID: 1232504975551520}
+  - {fileID: 1208670633774132}
+  - {fileID: 1470808203738938}
 --- !u!136 &136648474891948926
 CapsuleCollider:
   m_ObjectHideFlags: 1
