@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
 	public GameObject[] Markers;
 	public GameObject BlackScreenEnclosure;
+	public GameObject BlackScreenEnclosure2;
 	public GameObject Marker;
 	public int maxPathLength = 60;
 
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour
 		dialogueQ = new Queue<string> ();
 		initPath ();
 		initDialogue ();
+		teleportToNearNextPost ();
 		nextPoint (false);
 	}
 		
@@ -98,6 +100,7 @@ public class GameManager : MonoBehaviour
 			// Let tester point back
 			PlayerActionLock = true;
 			BlackScreenEnclosure.SetActive (true);
+			BlackScreenEnclosure2.SetActive (true);
 			Marker.GetComponent<MouseLook> ().OnStartTimer ();
 			return;
 		}

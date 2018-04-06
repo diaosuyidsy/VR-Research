@@ -30,6 +30,7 @@ public class MarkerControl : MonoBehaviour
 	void OnEnable ()
 	{
 		changeColor ();
+		transform.LookAt (GameManager.GM.Player.transform);
 	}
 
 	void changeColor ()

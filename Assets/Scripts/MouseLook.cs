@@ -30,12 +30,14 @@ public class MouseLook : MonoBehaviour
 
 		if (Input.GetKeyUp (KeyCode.Space)) {
 			GameManager.GM.BlackScreenEnclosure.SetActive (!GameManager.GM.BlackScreenEnclosure.activeSelf);
+			GameManager.GM.BlackScreenEnclosure2.SetActive (!GameManager.GM.BlackScreenEnclosure2.activeSelf);
 		}
 		if (GameManager.GM.PlayerActionLock && !GameManager.GM.ClickedOnce && timer <= 0f) {
 			if (OVRInput.GetDown (button)) {
 				timer = 1f;
 				GameManager.GM.ClickedOnce = true;
 				GameManager.GM.BlackScreenEnclosure.SetActive (false);
+				GameManager.GM.BlackScreenEnclosure2.SetActive (false);
 				GameManager.GM.CalculateResult (player_hand, playerhand_cube);
 			}
 		}

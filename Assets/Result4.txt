@@ -1,2 +1,3 @@
-Player angle is: 30.015
-Player angle is: 86.31133
+Player angle is: 46.52697
+Player angle is: 82.46256
+Player angle is: 103.9265
