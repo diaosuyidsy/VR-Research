@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 	public int rowLimit = 40;
 
 	public GameObject[] Markers;
-	public GameObject BlankScreenCanvas;
+	public GameObject BlackScreenEnclosure;
 	public int maxPathLength = 60;
 
 	public int markerPointer = 0;
@@ -96,6 +96,7 @@ public class GameManager : MonoBehaviour
 			// This means 1/20 interation is complete
 			// Let tester point back
 			PlayerActionLock = true;
+			BlackScreenEnclosure.SetActive (true);
 			return;
 		}
 		// This means time for next method
@@ -115,7 +116,6 @@ public class GameManager : MonoBehaviour
 		if (markerPointer > maxMarkerPosition)
 			return;
 		Player.transform.position = new Vector3 (Markers [path [markerPointer]].transform.position.x, Player.transform.position.y, Markers [path [markerPointer]].transform.position.z - 10);
-		BlankScreenCanvas.GetComponent<BlankScreenControl> ().onBlankScreen ();
 	}
 
 	public void goBackwards ()

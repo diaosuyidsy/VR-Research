@@ -54,15 +54,12 @@ public class MouseLook : MonoBehaviour
 			GameManager.GM.goBackwards ();
 		}
 		if (OVRInput.GetDown (blankScreenButton)) {
-			GameManager.GM.BlankScreenCanvas.GetComponent<BlankScreenControl> ().onBlankScreen ();
+			GameManager.GM.BlackScreenEnclosure.SetActive (!GameManager.GM.BlackScreenEnclosure.activeSelf);
 		}
 		if (GameManager.GM.PlayerActionLock && !GameManager.GM.ClickedOnce) {
-			if (Input.GetMouseButtonUp (0)) {
-				GameManager.GM.ClickedOnce = true;
-				GameManager.GM.CalculateResult (transform.parent, transform.parent.GetChild (2));
-			}
 			if (OVRInput.GetDown (button)) {
 				GameManager.GM.ClickedOnce = true;
+				GameManager.GM.BlackScreenEnclosure.SetActive (false);
 				GameManager.GM.CalculateResult (player_hand, playerhand_cube);
 			}
 		}

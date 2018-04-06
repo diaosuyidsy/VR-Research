@@ -43,7 +43,7 @@ public class MarkerControl : MonoBehaviour
 			thisColor = yellow;
 		}
 		foreach (GameObject grz in Godrayz) {
-			grz.GetComponent<MeshRenderer> ().material.SetColor ("_TintColor", thisColor);
+			grz.GetComponent<MeshRenderer> ().material.SetColor ("_Color", thisColor);
 		}
 	}
 }
