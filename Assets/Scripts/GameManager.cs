@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
 	public GameObject[] Markers;
 	public GameObject BlackScreenEnclosure;
+	public GameObject Marker;
 	public int maxPathLength = 60;
 
 	public int markerPointer = 0;
@@ -97,6 +98,7 @@ public class GameManager : MonoBehaviour
 			// Let tester point back
 			PlayerActionLock = true;
 			BlackScreenEnclosure.SetActive (true);
+			Marker.GetComponent<MouseLook> ().OnStartTimer ();
 			return;
 		}
 		// This means time for next method
@@ -118,15 +120,12 @@ public class GameManager : MonoBehaviour
 		Player.transform.position = new Vector3 (Markers [path [markerPointer]].transform.position.x, Player.transform.position.y, Markers [path [markerPointer]].transform.position.z - 10);
 	}
 
-	public void goBackwards ()
+	public void changeScene (int howmuch)
 	{
-		if (markerPointer <= 1)
+		int sceneNum = SceneManager.GetActiveScene ().buildIndex;
+		if (sceneNum + howmuch > 3 || (sceneNum + howmuch < 0))
 			return;
-		foreach (GameObject r in GameObject.FindGameObjectsWithTag ("Mark")) {
-			r.SetActive (false);
-		}
-		markerPointer--;
-		Markers [path [markerPointer]].SetActive (true);
+		SceneManager.LoadScene (sceneNum + howmuch);
 	}
 
 	public void CalculateResult (Transform player_hand, Transform playerhand_cube)

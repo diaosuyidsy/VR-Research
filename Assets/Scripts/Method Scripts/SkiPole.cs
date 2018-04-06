@@ -29,6 +29,7 @@ public class SkiPole : MonoBehaviour
 	private Vector3 vel;
 
 	public float Step = 0.5f;
+	public float MovementBuffer = 1f;
 	private float prevHeight;
 
 	// Use this for initialization
@@ -42,13 +43,13 @@ public class SkiPole : MonoBehaviour
 	// get the change in position for the left controller
 	Vector3 lDelta ()
 	{
-		return lPrev - lController.transform.position;
+		return (lPrev - lController.transform.position) * MovementBuffer;
 	}
 
 	// get the change in position for the right controller
 	Vector3 rDelta ()
 	{
-		return rPrev - rController.transform.position;
+		return (rPrev - rController.transform.position) * MovementBuffer;
 	}
 
 	// FixedUpdate is called once per frame

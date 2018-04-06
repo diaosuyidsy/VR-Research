@@ -104,6 +104,8 @@ public class Hoverboard : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		if (GameManager.GM.PlayerActionLock)
+			return;
 		prevHeight = Player.position.y;
 
 		float yaw = 0, pitch = 0, roll = 0;
